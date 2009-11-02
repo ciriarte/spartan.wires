@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{00000000-0000-0000-0000-000000000000}") = "Spartan.Wires", "Spartan.Wires\Spartan.Wires.csproj", "{45C81053-B3F7-4DAE-84AE-8EE0A091183B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45C81053-B3F7-4DAE-84AE-8EE0A091183B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C81053-B3F7-4DAE-84AE-8EE0A091183B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C81053-B3F7-4DAE-84AE-8EE0A091183B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C81053-B3F7-4DAE-84AE-8EE0A091183B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
