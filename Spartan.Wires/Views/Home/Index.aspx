@@ -4,6 +4,12 @@ Wires
 </asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
 <div class="wires">
-<canvas width="960" height="600"></canvas>
+<canvas id="com-spartanprogramming-wires" width="960" height="600"></canvas>
 </div>
+<script type="text/javascript">
+    (function () {
+        var app = new Framework.Application(document.getElementById("com-spartanprogramming-wires"));
+        app.Run();
+    })();
+</script>
 </asp:Content>
