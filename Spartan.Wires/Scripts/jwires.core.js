@@ -15,21 +15,17 @@
                 for (var i = 0; i < ctx.canvas.width; i = i + cellWidth) {
                     ctx.beginPath();
                     ctx.moveTo(i, 0);
-                    //console.log("moving to x:" + i + ", y:" + 0);
                     ctx.lineTo(i, ctx.canvas.height);
-                    //console.log("line to x:" + i + ", y:" + ctx.canvas.height);
                     ctx.stroke();
                 }
                 for (var j = 0; j < ctx.canvas.height; j = j + cellHeight) {
                     ctx.beginPath();
                     ctx.moveTo(0, j);
-                    //console.log("moving to x:" + 0 + ", y:" + j);
                     ctx.lineTo(ctx.canvas.width, j);
-                    //console.log("line to x:" + ctx.canvas.width + ", y:" + j);
                     ctx.stroke();
                 }
                 console.log("Grid drawn:" + gDrawn++);
-            }
+            };
         }
 
         function Jack(x, y) {
@@ -40,10 +36,10 @@
                 ctx.strokeStyle = "rgb(0,0,0)";
                 ctx.fillStyle = "rgb(255,255,255)";
                 ctx.beginPath();
-                ctx.arc(x, y, 5, 0, 2 * Math.PI, true);
+                ctx.arc(this.x, this.y, 5, 0, 2 * Math.PI, true);
                 ctx.fill();
                 ctx.stroke();
-            }
+            };
         }
 
         function Wire(x, y, x2, y2) {
@@ -55,34 +51,30 @@
             this.draw = function (ctx) {
                 ctx.strokeStyle = "rgb(0,0,0)";
                 ctx.fillStyle = "rgb(255,255,255)";
-                //var curLineWidth = ctx.lineWidth;
                 ctx.lineWidth = 8;
                 ctx.beginPath();
                 ctx.moveTo(_jack1.x, _jack1.y);
-                ctx.bezierCurveTo(_jack1.x + 100, _jack1.y, _jack2.x - 100, _jack2.y, _jack2.x, _jack2.y)
+                ctx.bezierCurveTo(_jack1.x + 100, _jack1.y, _jack2.x - 100, _jack2.y, _jack2.x, _jack2.y);
                 ctx.stroke();
                 ctx.strokeStyle = "rgb(255,255,255)";
                 ctx.lineWidth = 6;
                 ctx.beginPath();
                 ctx.moveTo(_jack1.x, _jack1.y);
-                ctx.bezierCurveTo(_jack1.x + 100, _jack1.y, _jack2.x - 100, _jack2.y, _jack2.x, _jack2.y)
+                ctx.bezierCurveTo(_jack1.x + 100, _jack1.y, _jack2.x - 100, _jack2.y, _jack2.x, _jack2.y);
                 ctx.stroke();
                 ctx.strokeStyle = "rgb(0,0,0)";
                 ctx.lineWidth = 1;
                 _jack1.draw(ctx);
                 _jack2.draw(ctx);
-            }
+            };
         }
 
         jWires.add(new Grid(20, 20));
         jWires.add(new Wire(100, 100, 300, 300));
 
-        //        var timer = setInterval(function () {
-        console.log("About to draw everything...");
         for (var control in jWires.controls) {
             jWires.controls[control].draw(jWires.ctx);
         }
-        //        }, 1000);
 
         return jWires;
     };
@@ -90,7 +82,7 @@
     function buildjWires(canvas) {
         var w = {};
 
-        if (!canvas) canvas = document.getElementsByTagName("canvas")[0];
+        if (!canvas) { canvas = document.getElementsByTagName("canvas")[0]; }
 
         var ctx = canvas.getContext("2d");
 
@@ -118,7 +110,7 @@
             w.controls.push(control);
         };
 
-        w.cursor = function (mode) { document.body.style.cursor = mode; }
+        w.cursor = function (mode) { document.body.style.cursor = mode; };
 
         w.dirty = 0;
 
@@ -144,19 +136,11 @@
         // Undefined event handlers to be replaced by user when needed
         w.mouseClicked = undefined;
         w.mouseDragged = function (e) {
-                    if (w.dirty < 5) {
-                w.dirty++;
-                console.log("Dirty: " + w.dirty);
-                return;
-            }
-            else {
-                w.dirty = 0;
             console.log("Mouse is dragged (x: " + w.mouseX + ", y: " + w.mouseY + ")");
             w.controls[1].Jack2().x = w.mouseX;
             w.controls[1].Jack2().y = w.mouseY;
             for (var control in jWires.controls) {
                 w.controls[control].draw(jWires.ctx);
-            }
             }
         };
         w.mouseMoved = undefined;
@@ -171,8 +155,8 @@
 
         attach(canvas, "mousemove", function (e) {
 
-            var scrollX = window.scrollX != null ? window.scrollX : window.pageXOffset;
-            var scrollY = window.scrollY != null ? window.scrollY : window.pageYOffset;
+            var scrollX = window.scrollX !== null ? window.scrollX : window.pageXOffset;
+            var scrollY = window.scrollY !== null ? window.scrollY : window.pageYOffset;
 
             w.pmouseX = w.mouseX;
             w.pmouseY = w.mouseY;
@@ -187,15 +171,15 @@
         attach(canvas, "mouseout", function (e) { w.cursor("auto"); });
 
         attach(canvas, "mousedown", function (e) {
-                mousePressed = true;
-                switch (e.which) {
-                    case 1: w.mouseButton = w.LEFT; break;
-                    case 2: w.mouseButton = w.CENTER; break;
-                    case 3: w.mouseButton = w.RIGHT; break;
-                }
-                w.mouseDown = true;
-                if (typeof w.mousePressed == "function") { w.mousePressed(); }
-                else { w.mousePressed = true; }
+            mousePressed = true;
+            switch (e.which) {
+                case 1: w.mouseButton = w.LEFT; break;
+                case 2: w.mouseButton = w.CENTER; break;
+                case 3: w.mouseButton = w.RIGHT; break;
+            }
+            w.mouseDown = true;
+            if (typeof w.mousePressed == "function") { w.mousePressed(); }
+            else { w.mousePressed = true; }
         });
 
         attach(canvas, "contextmenu", function (e) {
