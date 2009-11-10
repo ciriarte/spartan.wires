@@ -8,8 +8,7 @@ Wires
 </div>
 <script type="text/javascript">
     (function () {
-        var app = new Framework.Application(document.getElementById("com-spartanprogramming-wires"));
-        app.Run();
+        application.run("com-spartanprogramming-wires");
     })();
 </script>
 </asp:Content>
