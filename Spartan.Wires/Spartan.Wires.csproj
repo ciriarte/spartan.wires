@@ -77,6 +77,8 @@
   <ItemGroup>
     <Content Include="App\Controllers\application.js" />
     <Content Include="App\Controllers\canvas.js" />
+    <Content Include="App\Controllers\grid.js" />
+    <Content Include="App\Controllers\wire.js" />
     <Content Include="App\Framework\qunit.js" />
     <Content Include="App\Tests\canvas.controller.tests.js" />
     <Content Include="App\Views\canvas.js" />

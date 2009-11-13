@@ -1,0 +1,23 @@
+﻿<#@ template language="C#" debug="True" hostspecific="true" #>
+<#@ output extension="js" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#
+	String[] conventionPaths = { "framework", "controllers", "models", "views", "tests" };
+	String   hostFilePath    = Path.GetDirectoryName(this.Host.TemplateFile);
+	foreach (String conventionPath in conventionPaths) {
+		String currentPath = Path.Combine(hostFilePath, conventionPath);
+		String[] files = Directory.GetFiles(currentPath);
+		foreach (String file in files) {
+		String code = File.ReadAllText(file);
+
+#>
+
+<#= code #>
+
+<#
+
+		}
+
+	}
+#>
